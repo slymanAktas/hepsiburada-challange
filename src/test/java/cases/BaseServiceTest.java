@@ -1,7 +1,6 @@
 package cases;
 import io.restassured.RestAssured;
-import services.PetStoreService;
-
+import api.services.PetStoreService;
 import static config.Config.API_BASE_PATH;
 import static config.Config.API_URL;
 

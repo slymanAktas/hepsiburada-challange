@@ -1,4 +1,4 @@
-package services;
+package api.services;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
@@ -15,7 +15,7 @@ public class PetStoreService {
                 .contentType(ContentType.JSON)
                 .body(getRequestBody(id, username, firstName, lastName, email, password, phone, userStatus))
                 .when()
-                .post("/user")
+                .post("/")
                 .then();
         response.extract().response().prettyPrint();
         return response;
@@ -49,7 +49,7 @@ public class PetStoreService {
                 .accept(ContentType.JSON)
                 .contentType(ContentType.JSON)
                 .when()
-                .delete("/user/" + username + "")
+                .delete("/" + username + "")
                 .then();
         response.extract().response().prettyPrint();
         return response;

@@ -16,7 +16,7 @@ public class Config {
     static {
         properties = loadProperties();
         API_URL = properties.getProperty("petstore.baseUrl");
-        API_BASE_PATH = properties.getProperty("petstore.basePath");
+        API_BASE_PATH = properties.getProperty("petstore.user.basePath");
         DEFAULT_BROWSER_NAME = getBrowser();
     }
 
