@@ -1,6 +1,6 @@
 package pages;
 
-import utils.browser.Browser;
+import browser.Browser;
 
 public class Page extends Browser {
     Browser browser;

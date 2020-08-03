@@ -1,4 +1,4 @@
-package utils.browser;
+package browser;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.ScreenshotException;
@@ -8,11 +8,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.LoginPage;
 import pages.Page;
 import config.Config;
-import utils.drivers.Chrome;
-import utils.drivers.FireFox;
+import drivers.Chrome;
+import drivers.FireFox;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import static config.Config.ISREMOTE;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,12 +29,21 @@ public abstract class Browser extends BrowserUtils {
     Page page;
 
     protected static void launchBrowser() {
-        if (Config.DEFAULT_BROWSER_NAME.equalsIgnoreCase("firefox")) {
-            new FireFox().initInLocal();
-        } else if (Config.DEFAULT_BROWSER_NAME.equalsIgnoreCase("chrome")) {
-            new Chrome().initInLocal();
+        if (ISREMOTE) {
+            if (Config.DEFAULT_BROWSER_NAME.equalsIgnoreCase("firefox")) {
+                new FireFox().initInGrid();
+            } else if (Config.DEFAULT_BROWSER_NAME.equalsIgnoreCase("chrome")) {
+                new Chrome().initInGrid();
+            }
+        } else {
+            if (Config.DEFAULT_BROWSER_NAME.equalsIgnoreCase("firefox")) {
+                new FireFox().initInLocal();
+            } else if (Config.DEFAULT_BROWSER_NAME.equalsIgnoreCase("chrome")) {
+                new Chrome().initInLocal();
+            }
         }
     }
+
 
     protected static void closeBrowser() {
         driver.close();
@@ -140,5 +152,15 @@ public abstract class Browser extends BrowserUtils {
             System.out.println("Taking screenshot has been failed, " + sse);
         }
         return byteArray;
+    }
+
+    public String diffBetweenTwoList(java.util.List expectedValues, java.util.List actualValues) {
+        java.util.List<String> diff = new ArrayList<>();
+        for (String temp : (java.util.List<String>) expectedValues) {
+            if (!actualValues.contains(temp)) {
+                diff.add(temp);
+            }
+        }
+        return diff.stream().collect(Collectors.joining("\n"));
     }
 }

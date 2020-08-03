@@ -10,6 +10,7 @@ import java.util.List;
 
 import static models.Buyer.aBuyer;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static pages.BasketPage.shouldHaveRecentlyViewedProducts;
 
 
 public class RecentlyViewedTest extends BaseTest {
@@ -29,8 +30,8 @@ public class RecentlyViewedTest extends BaseTest {
         Buyer buyer = aBuyer().loginHepsiBurada();
         List<Product> randomThreeProduct = buyer.getRandomProducts(3);
         buyer.visitProductsByOrder(randomThreeProduct);
+
         BasketPage basketPage = buyer.openBasket();
-        List<Product> recentlyViewedProduct = basketPage.getRecentlyViewedProducts();
-        assertThat("User couldn't see recently viewed product under basket...", recentlyViewedProduct.containsAll(randomThreeProduct));
+        assertThat("User couldn't see recently viewed product under basket...", basketPage, shouldHaveRecentlyViewedProducts(randomThreeProduct));
     }
 }

@@ -1,4 +1,4 @@
-package utils.browser;
+package browser;
 
 import com.google.common.base.Function;
 import org.openqa.selenium.*;

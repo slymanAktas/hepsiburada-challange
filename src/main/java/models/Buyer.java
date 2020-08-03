@@ -6,7 +6,7 @@ import pages.BasketPage;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.TestException;
-import utils.browser.Browser;
+import browser.Browser;
 
 import java.util.List;
 import java.util.stream.Collectors;

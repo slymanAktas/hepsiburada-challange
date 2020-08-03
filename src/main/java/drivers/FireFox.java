@@ -1,11 +1,11 @@
-package utils.drivers;
+package drivers;
 
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.CapabilityType;
-import utils.browser.Browser;
+import browser.Browser;
 
 public class FireFox extends Browser implements Initialize {
 
@@ -23,5 +23,10 @@ public class FireFox extends Browser implements Initialize {
         options.setCapability(CapabilityType.PLATFORM_NAME, (Platform) null);
 
         return options;
+    }
+
+    @Override
+    public void initInGrid() {
+        driver = RemoteDrive.create(getOptions());
     }
 }

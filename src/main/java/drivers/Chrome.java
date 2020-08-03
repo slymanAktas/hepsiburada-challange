@@ -1,10 +1,10 @@
-package utils.drivers;
+package drivers;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import utils.browser.Browser;
+import browser.Browser;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,8 +12,8 @@ import java.util.Map;
 public class Chrome extends Browser implements Initialize {
 
     public void initInLocal() {
-//        ChromeDriverManager.getInstance().setup();
-        ChromeDriverManager.getInstance().version("84.0.4147.30").setup();
+        ChromeDriverManager.getInstance().setup();
+//        ChromeDriverManager.getInstance().version("84.0.4147.30").setup();
         driver = new ChromeDriver(getOptions());
         driver.get("https://www.hepsiburada.com/");
         driver.manage().window().maximize();
@@ -29,5 +29,11 @@ public class Chrome extends Browser implements Initialize {
         options.setCapability("platform", (Platform) null);
 
         return options;
+    }
+
+    @Override
+    public void initInGrid() {
+//        webDriver = RemoteDrive.create(getOptions(false)); //For remote debug
+        driver = RemoteDrive.create(getOptions());
     }
 }
