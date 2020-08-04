@@ -14,6 +14,7 @@ public class Config {
     private static final Properties properties;
     public static final boolean ISREMOTE;
     public static final String ZALENIUM_GRID_HUB_URL;
+    public static final int TIMEOUT = 10;
 
     static {
         properties = loadProperties();

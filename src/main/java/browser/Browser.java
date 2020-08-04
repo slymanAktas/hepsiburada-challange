@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static config.Config.ISREMOTE;
+import static config.Config.TIMEOUT;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -53,28 +54,28 @@ public abstract class Browser extends BrowserUtils {
         driver.get(page.url);
         waitForDialog();
         if (!(page instanceof LoginPage)) {
-            waitForUrlHasNavigatedTo(10, page.url);
+            waitForUrlHasNavigatedTo(TIMEOUT, page.url);
         }
         return new Page();
     }
 
 
     public void clickToBy(By by) {
-        clickTo(visibilityWait(10, by));
+        clickTo(visibilityWait(TIMEOUT, by));
     }
 
     private void clickTo(WebElement element) {
-        waitForEnableOf(10, element);
-        waitForClickableOf(10, element);
+        waitForEnableOf(TIMEOUT, element);
+        waitForClickableOf(TIMEOUT, element);
         highlightElement(element);
         element.click();
         waitForDialog();
     }
 
     public void type(By by, String text, boolean clear) {
-        WebElement element = visibilityWait(10, by);
-        waitForEnableOf(10, element);
-        waitForClickableOf(10, element);
+        WebElement element = visibilityWait(TIMEOUT, by);
+        waitForEnableOf(TIMEOUT, element);
+        waitForClickableOf(TIMEOUT, element);
         highlightElement(element);
         scrollToElement(element);
         if (clear) {
