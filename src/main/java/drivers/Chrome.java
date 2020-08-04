@@ -33,7 +33,6 @@ public class Chrome extends Browser implements Initialize {
 
     @Override
     public void initInGrid() {
-//        webDriver = RemoteDrive.create(getOptions(false)); //For remote debug
         driver = RemoteDrive.create(getOptions());
     }
 }

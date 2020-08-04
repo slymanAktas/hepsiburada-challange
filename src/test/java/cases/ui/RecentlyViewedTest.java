@@ -28,7 +28,7 @@ public class RecentlyViewedTest extends BaseTest {
     @Test
     public void shouldSeeRecentlyViewedProductOnBasket() {
         Buyer buyer = aBuyer().loginHepsiBurada();
-        List<Product> randomThreeProduct = buyer.getRandomProducts(3);
+        List<Product> randomThreeProduct = buyer.getRandomProductsFromDOD(3); //DOD: Dial Of Day
         buyer.visitProductsByOrder(randomThreeProduct);
 
         BasketPage basketPage = buyer.openBasket();

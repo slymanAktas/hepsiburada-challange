@@ -40,7 +40,7 @@ public class Buyer {
         return this;
     }
 
-    public List<Product> getRandomProducts(int count) {
+    public List<Product> getRandomProductsFromDOD(int count) {
         List<String> dodProductUrls = browser.findElements(dodProducts).stream().map(each -> each.getAttribute("href")).collect(Collectors.toList());
         if (dodProductUrls.size() < count) {
             throw new TestException("Desired product count can not be more then total product under Deal Of Day...");
